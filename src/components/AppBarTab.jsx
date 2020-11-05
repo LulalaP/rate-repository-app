@@ -15,19 +15,13 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
 const AppBarTab = ({text, path}) => {
   const history = useHistory();
   return(
     <View style={styles.container}>
       <TouchableOpacity activeOpacity={0.8} onPress={() => history.push(path)}>
         <Text style={styles.text}>{text}</Text>
-        {/* <View>
-
-        </View> */}
       </TouchableOpacity>
-      
     </View>
   );
 };
