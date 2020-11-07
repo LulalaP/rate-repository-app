@@ -21,16 +21,6 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     alignSelf: 'center',
   },
-  usernameInput: {
-    borderWidth : 1.0,
-    padding: 5,
-    marginBottom: 10,
-  },
-  passwordInput: {
-    borderWidth : 1.0,
-    padding: 5,
-    marginBottom: 10,
-  },
 });
 
 const onSubmit = (values) => {
@@ -40,10 +30,10 @@ const onSubmit = (values) => {
 const SignIn = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.usernameInput}>
+      <View>
         <FormikTextInput  name='username' placeholder='Username' />
       </View>
-      <View style={styles.passwordInput}>
+      <View>
         <FormikTextInput style={styles.signinForm} name="password" placeholder="Password" secureTextEntry={true} />
       </View>
       <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
