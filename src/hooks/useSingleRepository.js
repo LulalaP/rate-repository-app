@@ -13,6 +13,7 @@ const useSingleRepository = ({ id }) => {
 
   useEffect(() => {
     if (called & (networkStatus > 6)) {
+      console.log(called)
       const fetchedRepository = data ? data.repository : null;
       setRepository(fetchedRepository);
     }

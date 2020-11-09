@@ -48,11 +48,13 @@ const styles = StyleSheet.create({
     color: theme.colors.textPrimary,
     fontSize: theme.fontSizes.subheading,
     fontWeight: theme.fontWeights.bold,
+    marginBottom: 10,
   },
   description: {
     color: theme.colors.textSecondary,
     fontSize: theme.fontSizes.body,
     fontWeight: theme.fontWeights.normal,
+    marginBottom: 10,
   },
 });
 
