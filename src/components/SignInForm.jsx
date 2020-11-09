@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
 const SignInForm = ({ onSubmit }) => {
   return (
     <View style={styles.container}>
-      <FormikTextInput  name='username' placeholder='Username' />
-      <FormikTextInput name="password" placeholder="Password" secureTextEntry={true} />
+      <FormikTextInput testID='usernameField' name='username' placeholder='Username' />
+      <FormikTextInput testID='passwordField' name="password" placeholder="Password" secureTextEntry={true} />
       <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
         <View style={styles.signinBtn}>
-          <Text style={styles.signinBtnText} fontWeight='bold'>
+          <Text testID='submitButton' style={styles.signinBtnText} fontWeight='bold'>
             Sign in
           </Text>
         </View>
