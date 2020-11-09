@@ -23,19 +23,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const onSubmit = (values) => {
-  console.log(values);
-};
-
-const SignIn = () => {
+const SignInForm = ({ onSubmit }) => {
   return (
     <View style={styles.container}>
-      <View>
-        <FormikTextInput  name='username' placeholder='Username' />
-      </View>
-      <View>
-        <FormikTextInput style={styles.signinForm} name="password" placeholder="Password" secureTextEntry={true} />
-      </View>
+      <FormikTextInput  name='username' placeholder='Username' />
+      <FormikTextInput name="password" placeholder="Password" secureTextEntry={true} />
       <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
         <View style={styles.signinBtn}>
           <Text style={styles.signinBtnText} fontWeight='bold'>
@@ -47,4 +39,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignInForm;
