@@ -44,7 +44,7 @@ const CountItem = ({ name, count }) => {
   return (
     <View style={styles.container}>
       <View style={styles.flexContainer}>
-        <View style={styles.flexItemA}>
+        <View testID={name} style={styles.flexItemA}>
           <View>
             <Text style={styles.count}>{resultCount}</Text>
           </View>

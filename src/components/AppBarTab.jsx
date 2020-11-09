@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { useHistory } from 'react-router-native';
 import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
@@ -14,11 +13,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppBarTab = ({text, path}) => {
-  const history = useHistory();
+const AppBarTab = ({text, path, cb}) => {
   return(
     <View style={styles.container}>
-      <TouchableOpacity activeOpacity={0.8} onPress={() => history.push(path)}>
+      <TouchableOpacity activeOpacity={0.8} onPress={() => cb(path)}>
         <Text style={styles.text}>{text}</Text>
       </TouchableOpacity>
     </View>

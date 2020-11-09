@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext, useCallback } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Link } from 'react-router-native';
+import { Link, useHistory } from "react-router-native";
+import { useApolloClient } from "@apollo/react-hooks";
 import Constants from 'expo-constants';
+
 import AppBarTab from './AppBarTab';
+import AuthStorageContext from "../contexts/AuthStorageContext";
+import useAuthorizedUser from "../hooks/useAuthorizedUser";
 
 const styles = StyleSheet.create({
   flexContainer: {
@@ -25,14 +29,33 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const apolloClient = useApolloClient();
+  const authStorage = useContext(AuthStorageContext);
+  const history = useHistory();
+  const { authorizedUser } = useAuthorizedUser();
+
+  const routeTabPress = useCallback((path) => {
+    history.push(path);
+  }, []);
+
+  const signOut = useCallback(async (path) => {
+    await authStorage.removeAccessToken();
+    apolloClient.resetStore();
+    history.push(path);
+  }, []);
+
   return(
     <View style={styles.flexContainer}>
       <ScrollView style={styles.scrollView} horizontal>
         <View style={styles.flexItemA}>
-          <Link to="/" text="Repositories" path="/" component={AppBarTab}></Link>
+          <Link to="/" text="Repositories" path="/" cb={routeTabPress} component={AppBarTab}></Link>
         </View>
         <View style={styles.flexItemA}>
-          <Link to="/signin" text='Sign In' path="/signin" component={AppBarTab}></Link>
+          {authorizedUser === null && (
+          <Link to="/signin" text='Sign In' path="/signin" cb={routeTabPress} component={AppBarTab}></Link>)}
+          {authorizedUser && (
+            <AppBarTab text="Sign out" path="/" cb={signOut}></AppBarTab>
+          )}
         </View>
       </ScrollView>
     </View>
