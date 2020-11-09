@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+    "@react-native-async-storage/async-storage": "^1.13.2",
+    "@react-native-community/async-storage": "~1.11.0",
     "apollo-boost": "^0.4.9",
     "dotenv": "^8.2.0",
     "expo": "~38.0.8",
@@ -22,8 +24,7 @@
     "react-native-dotenv": "^2.4.2",
     "react-native-web": "~0.11.7",
     "react-router-native": "^5.2.0",
-    "yup": "^0.29.3",
-    "@react-native-community/async-storage": "~1.11.0"
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
