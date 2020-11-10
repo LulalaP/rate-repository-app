@@ -57,10 +57,14 @@ const AppBar = () => {
         </View>
         <View style={styles.flexItemA}>
           {authorizedUser === null && (
-          <Link to="/signin" text='Sign In' path="/signin" cb={routeTabPress} component={AppBarTab}></Link>)}
+          <Link to="/signin" text='Sign in' path="/signin" cb={routeTabPress} component={AppBarTab}></Link>)}
           {authorizedUser && (
             <AppBarTab text="Sign out" path="/" cb={signOut}></AppBarTab>
           )}
+        </View>
+        <View style={styles.flexItemA}>
+          {authorizedUser === null && (
+          <Link to="/signup" text='Sign up' path="/signup" cb={routeTabPress} component={AppBarTab}></Link>)}
         </View>
       </ScrollView>
     </View>

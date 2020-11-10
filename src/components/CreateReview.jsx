@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useHistory } from "react-router-native";
 import useCreateReview from '../hooks/useCreateReview';
 import CreateReviewContainer from './CreateReviewContainer';
 
@@ -12,6 +12,7 @@ const initialValues = {
 
 const CreateReview = () => {
   const [createReview] = useCreateReview();
+  const history = useHistory();
 
   const onSubmit = async (values) => {
     const { repoOwnerName, repoName, rating, review } = values;

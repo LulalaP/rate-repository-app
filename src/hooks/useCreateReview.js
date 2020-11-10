@@ -1,11 +1,9 @@
 import { useMutation } from "@apollo/react-hooks";
-import { useHistory } from "react-router-native";
 
-import { CREATEREVIEW } from "../graphql/mutations";
+import { CREATE_REVIEW } from "../graphql/mutations";
 
 const useCreateReview = () => {
-  const [mutate, result] = useMutation(CREATEREVIEW);
-  const history = useHistory();
+  const [mutate, result] = useMutation(CREATE_REVIEW);
 
   const createReview = async ({ repoOwnerName, repoName, rating, review }) => {
     mutate({  variables: { repoOwnerName, repoName, rating, review } });
