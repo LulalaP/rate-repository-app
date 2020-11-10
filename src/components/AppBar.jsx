@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flexDirection: "row",
-    marginHorizontal: 20,
+    marginHorizontal: 5,
     
   },
 });
@@ -49,6 +49,11 @@ const AppBar = () => {
       <ScrollView style={styles.scrollView} horizontal>
         <View style={styles.flexItemA}>
           <Link to="/" text="Repositories" path="/" cb={routeTabPress} component={AppBarTab}></Link>
+        </View>
+        <View style={styles.flexItemA}>
+          {authorizedUser && (
+          <Link to="/createreview" text="Create a review" path="/createreview" cb={routeTabPress} component={AppBarTab}></Link>
+          )}
         </View>
         <View style={styles.flexItemA}>
           {authorizedUser === null && (
