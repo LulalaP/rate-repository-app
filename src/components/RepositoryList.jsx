@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import { useDebounce } from 'use-debounce';
 
 import useRepositories from '../hooks/useRepositories';
 import RepositoryListContainer from './RepositoryListContainer';
 
+
 const RepositoryList = () => {
   const [orderBy, setOrderBy] = useState('latest');
+  const [searchValue, setSearchValue] = useState('');
+  const [debouncedSearchValue] = useDebounce(searchValue, 500);
+
+  const handleSearch = (value) => {
+    setSearchValue(value);
+  };
   
   const ob =
     orderBy === 'lowest' || orderBy === 'highest'
@@ -16,11 +24,17 @@ const RepositoryList = () => {
   const variables = {
     orderBy: ob,
     orderDirection: od,
+    searchKeyword: debouncedSearchValue,
   };
 
   const { repositories } = useRepositories(variables);
 
-  return <RepositoryListContainer repositories={repositories} setOrderBy={setOrderBy}/>;
+  return <RepositoryListContainer 
+            repositories={repositories} 
+            setOrderBy={setOrderBy}
+            setSearchValue={setSearchValue}
+            handleSearch={handleSearch}
+            />;
 };
 
 export default RepositoryList;
