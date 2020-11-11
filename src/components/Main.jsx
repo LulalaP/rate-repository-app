@@ -27,7 +27,7 @@ const Main = () => {
         <Route path="/createreview">
           <CreateReview />
         </Route>
-        <Route path="/" exact>
+        <Route path="/">
           <RepositoryList />
         </Route>
         <Route path="/signin" exact>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import RepositoryItem from './RepositoryItem';
+import { PickerSelect } from './PickerSelect';
 
 const styles = StyleSheet.create({
   separator: {
@@ -10,23 +11,36 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryListContainer = ({ repositories }) => {
-  const repositoryNodes = repositories.edges
-    ? repositories.edges.map(edge => edge.node)
-    : [];
-
-  const renderItem = ({ item }) => (
+export class RepositoryListContainer extends React.Component {
+  renderItem = ({ item }) => (
     <RepositoryItem item={item} />
   );
 
-  return (
-    <FlatList
-      testID='RepositoryListContainer'
-      data={repositoryNodes}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem = {renderItem}
-    />
-  );
+  renderHeader = () => {
+    const { setOrderBy } = this.props;
+    return (
+      <PickerSelect setOrderBy={setOrderBy} />
+    )
+  }
+
+  render () {
+    const { repositories } = this.props;
+
+    const repositoryNodes = repositories.edges
+      ? repositories.edges.map(edge => edge.node)
+      : [];
+
+    return (
+      <FlatList
+        testID='RepositoryListContainer'
+        data={repositoryNodes}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem = {this.renderItem}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={this.renderHeader}
+      />
+    );
+  }
 };
 
 export default RepositoryListContainer;

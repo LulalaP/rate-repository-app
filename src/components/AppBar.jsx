@@ -1,12 +1,12 @@
 import React, { useContext, useCallback } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Link, useHistory } from "react-router-native";
-import { useApolloClient } from "@apollo/react-hooks";
+import { Link, useHistory } from 'react-router-native';
+import { useApolloClient } from '@apollo/react-hooks';
 import Constants from 'expo-constants';
 
 import AppBarTab from './AppBarTab';
-import AuthStorageContext from "../contexts/AuthStorageContext";
-import useAuthorizedUser from "../hooks/useAuthorizedUser";
+import AuthStorageContext from '../contexts/AuthStorageContext';
+import useAuthorizedUser from '../hooks/useAuthorizedUser';
 
 const styles = StyleSheet.create({
   flexContainer: {

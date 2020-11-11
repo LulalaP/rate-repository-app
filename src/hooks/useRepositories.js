@@ -3,10 +3,12 @@ import { useQuery } from "@apollo/react-hooks";
 
 import { GET_REPOSITORIES } from "../graphql/queries";
 
-const useRepositories = () => {
+const useRepositories = (variables) => {
   const [repositories, setRepositories] = useState([]);
+  console.log('variables', variables);
   const getRepositories = useQuery(GET_REPOSITORIES, {
     fetchPolicy: "cache-and-network",
+    variables,
   });
 
   const { called, networkStatus, loading, data, refetch } = getRepositories;
