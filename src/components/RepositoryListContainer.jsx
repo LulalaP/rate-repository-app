@@ -19,7 +19,7 @@ export class RepositoryListContainer extends React.Component {
 
   renderHeader = () => {
     const { setOrderBy, searchValue, handleSearch } = this.props;
-    
+
     return (
       <>
         <SearchBar searchValue={searchValue} handleSearch={handleSearch} />
@@ -29,7 +29,8 @@ export class RepositoryListContainer extends React.Component {
   }
 
   render () {
-    const { repositories } = this.props;
+    const { repositories, onEndReach } = this.props;
+    if (repositories === undefined) return null;
 
     const repositoryNodes = repositories.edges
       ? repositories.edges.map(edge => edge.node)
@@ -43,6 +44,8 @@ export class RepositoryListContainer extends React.Component {
         renderItem = {this.renderItem}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={this.renderHeader}
+        onEndReached={onEndReach}
+        onEndReachedThreshold={0.5}
       />
     );
   }

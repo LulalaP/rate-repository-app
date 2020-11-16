@@ -4,23 +4,47 @@ import { useQuery } from "@apollo/react-hooks";
 import { GET_REPOSITORIES } from "../graphql/queries";
 
 const useRepositories = (variables) => {
-  const [repositories, setRepositories] = useState([]);
-  console.log('variables', variables);
-  const getRepositories = useQuery(GET_REPOSITORIES, {
-    fetchPolicy: "cache-and-network",
+  const { data, fetchMore, loading, ...result } = useQuery(GET_REPOSITORIES, {
+    fetchPolicy: 'cache-and-network',
     variables,
   });
 
-  const { called, networkStatus, loading, data, refetch } = getRepositories;
+  const handleFetchMore = () => {
+    const canFetchMore =
+      !loading && data && data.repositories.pageInfo.hasNextPage;
 
-  useEffect(() => {
-    if (called & (networkStatus > 6)) {
-      const fetchedRepositories = data ? data.repositories : [];
-      setRepositories(fetchedRepositories);
+    if (!canFetchMore) {
+      return;
     }
-  }, [getRepositories]);
 
-  return { repositories, loading, refetch };
+    fetchMore({
+      query: GET_REPOSITORIES,
+      variables: {
+        after: data.repositories.pageInfo.endCursor,
+        ...variables,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const nextResult = {
+          repositories: {
+            ...fetchMoreResult.repositories,
+            edges: [
+              ...previousResult.repositories.edges,
+              ...fetchMoreResult.repositories.edges,
+            ],
+          },
+        };
+
+        return nextResult;
+      },
+    });
+  };
+
+  return {
+    repositories: data ? data.repositories : undefined,
+    fetchMore: handleFetchMore,
+    loading,
+    ...result,
+  };
 };
 
 export default useRepositories;

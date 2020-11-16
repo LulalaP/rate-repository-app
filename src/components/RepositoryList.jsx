@@ -25,15 +25,21 @@ const RepositoryList = () => {
     orderBy: ob,
     orderDirection: od,
     searchKeyword: debouncedSearchValue,
+    first: 8,
   };
 
-  const { repositories } = useRepositories(variables);
+  const { repositories, fetchMore } = useRepositories(variables);
+
+  const onEndReach = () => {
+    fetchMore();
+  };
 
   return <RepositoryListContainer 
             repositories={repositories} 
             setOrderBy={setOrderBy}
             setSearchValue={setSearchValue}
             handleSearch={handleSearch}
+            onEndReach={onEndReach}
             />;
 };
 

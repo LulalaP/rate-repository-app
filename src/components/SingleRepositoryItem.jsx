@@ -16,6 +16,7 @@ const ItemSeparator = () => <View style={styles.separator} />;
 const SingleRepositoryItem = () => {
   const { id } = useParams();
   const { repository } = useSingleRepository({ id });
+  if (repository === undefined) return null;
   
   const reviews = repository.reviews;
 
