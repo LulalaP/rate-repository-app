@@ -16,12 +16,11 @@ const MyReviews = () => {
     includeReviews: true,
     first: 8,
   };
-  const { authorizedUser, fetchMore } = useAuthorizedUser(variables);
-  console.log('my authorizedUser', authorizedUser);
+  const { authorizedUser, fetchMore, refetch } = useAuthorizedUser(variables);
+
   if (authorizedUser === undefined) return null;
   
   const reviews = authorizedUser.reviews;
-
   const reviewNodes = reviews
     ? reviews.edges.map(edge => edge.node)
     : [];
@@ -33,7 +32,7 @@ const MyReviews = () => {
   return (
     <FlatList
       data={reviewNodes}
-      renderItem={({ item }) => <MyReviewItem item={item} />}
+      renderItem={({ item }) => <MyReviewItem item={item} refetch={refetch} />}
       ItemSeparatorComponent={ItemSeparator}
       onEndReached={onEndReach}
       onEndReachedThreshold={0.5}

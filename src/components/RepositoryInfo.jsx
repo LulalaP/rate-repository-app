@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
     fontWeight: theme.fontWeights.normal,
     marginBottom: 10,
   },
-  signinBtn: {
+  button: {
     padding: 15,
     margin: 15,
     backgroundColor: theme.colors.primary,
     borderRadius: 4,
   },
-  signinBtnText: {
+  buttonText: {
     color: '#ffffff',
     alignSelf: 'center',
     fontWeight: theme.fontWeights.bold,
@@ -72,15 +72,7 @@ const RepositoryInfo = ({ repository }) => {
   
   const onSubmit = () => {
     Linking.openURL(`https://github.com/${item.fullName}`);
-  }
-  
-  const reviews = item.reviews;
-
-  const reviewNodes = reviews
-    ? reviews.edges.map(edge => edge.node)
-    : [];
-
-  console.log('reviewss', reviewNodes);
+  };
 
   return (
     <View style={styles.container}>
@@ -112,8 +104,8 @@ const RepositoryInfo = ({ repository }) => {
         <CountItem name='review' count={item.reviewCount} />
       </View>
       <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
-        <View style={styles.signinBtn}>
-          <Text testID='submitButton' style={styles.signinBtnText} fontWeight='bold'>
+        <View style={styles.button}>
+          <Text style={styles.buttonText}>
             Open in GitHub
           </Text>
         </View>

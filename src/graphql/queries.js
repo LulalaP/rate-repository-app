@@ -88,11 +88,12 @@ export const GET_AUTHORIZED_USER = gql`
     authorizedUser {
       id
       username
-      reviews (first: $first, after: $after) @include(if: $includeReviews) {
-        edges {
+      reviews (first: $first, after: $after) {
+        edges @include(if: $includeReviews) {
           node {
             repository {
               fullName
+              id
             }
             ...reviewDetails
           }
