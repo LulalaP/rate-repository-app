@@ -14,16 +14,33 @@ const REPOSITORY_DETAILS = gql`
   }
 `;
 
+const REVIEW_DETAILS = gql`
+  fragment reviewDetails on Review {
+    id
+    text
+    rating
+    createdAt
+    user {
+      id
+      username
+    }
+  }
+`;
+
 export const GET_REPOSITORIES = gql`
   query getRepositories(
     $orderBy: AllRepositoriesOrderBy
     $orderDirection: OrderDirection
     $searchKeyword: String
+    $first: Int
+    $after: String
   ) {
     repositories(
       orderBy: $orderBy
       orderDirection: $orderDirection
       searchKeyword: $searchKeyword
+      first: $first
+      after: $after
     ) {
       edges {
         node {
@@ -43,34 +60,53 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const GET_REPOSITORY = gql`
-  query getRepository( $id: ID! ){
+  query getRepository( $id: ID!, $first: Int!, $after: String){
     repository(id: $id ) {
       ...repositoryDetails
-      reviews {
+      reviews (first: $first, after: $after) {
         edges {
           node {
-            id
-            text
-            rating
-            createdAt
-            user {
-              id
-              username
-            }
+            ...reviewDetails
           }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          totalCount
+          hasNextPage
         }
       }
     }
   }
   ${REPOSITORY_DETAILS}
+  ${REVIEW_DETAILS}
 `;
 
 export const GET_AUTHORIZED_USER = gql`
-  query getAuthorizedUser {
+  query getAuthorizedUser($includeReviews: Boolean = false, $first: Int, $after: String) {
     authorizedUser {
       id
       username
+      reviews (first: $first, after: $after) @include(if: $includeReviews) {
+        edges {
+          node {
+            repository {
+              fullName
+            }
+            ...reviewDetails
+          }
+          cursor
+        }
+        pageInfo {
+          endCursor
+          startCursor
+          totalCount
+          hasNextPage
+        }
+      }
     }
   }
+  ${REVIEW_DETAILS}
 `;
 

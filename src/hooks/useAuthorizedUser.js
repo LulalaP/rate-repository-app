@@ -1,24 +1,49 @@
-import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 
 import { GET_AUTHORIZED_USER } from "../graphql/queries";
 
-const useAuthorizedUser = () => {
-  const [authorizedUser, setAuthorizedUser] = useState();
-  const getAuthorizedUser = useQuery(GET_AUTHORIZED_USER, {
+const useAuthorizedUser = (variables) => {
+  const { data, fetchMore, loading, ...result } = useQuery(GET_AUTHORIZED_USER, {
     fetchPolicy: "cache-and-network",
+    variables,
   });
 
-  const { called, networkStatus, loading, data, refetch } = getAuthorizedUser;
+  const handleFetchMore = () => {
+    const canFetchMore =
+      !loading && data && data.authorizedUser.reviews.pageInfo.hasNextPage;
 
-  useEffect(() => {
-    if (called & (networkStatus > 6)) {
-      const result = data ? data.authorizedUser : null;
-      setAuthorizedUser(result);
+    if (!canFetchMore) {
+      return;
     }
-  }, [getAuthorizedUser]);
 
-  return { authorizedUser, loading, refetch };
+    fetchMore({
+      query: GET_AUTHORIZED_USER,
+      variables: {
+        after: data.authorizedUser.reviews.pageInfo.endCursor,
+        ...variables,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const nextResult = {
+          authorizedUser: {
+            ...fetchMoreResult.authorizedUser,
+            edges: [
+              ...previousResult.authorizedUser.reviews.edges,
+              ...fetchMoreResult.authorizedUser.reviews.edges,
+            ],
+          },
+        };
+
+        return nextResult;
+      },
+    });
+  };
+
+  return {
+    authorizedUser: data ? data.authorizedUser : undefined,
+    fetchMore: handleFetchMore,
+    loading,
+    ...result,
+  };
 };
 
 export default useAuthorizedUser;

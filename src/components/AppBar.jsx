@@ -56,6 +56,11 @@ const AppBar = () => {
           )}
         </View>
         <View style={styles.flexItemA}>
+          {authorizedUser && (
+          <Link to="/myreviews" text="My reviews" path="/myreviews" cb={routeTabPress} component={AppBarTab}></Link>
+          )}
+        </View>
+        <View style={styles.flexItemA}>
           {authorizedUser === null && (
           <Link to="/signin" text='Sign in' path="/signin" cb={routeTabPress} component={AppBarTab}></Link>)}
           {authorizedUser && (
