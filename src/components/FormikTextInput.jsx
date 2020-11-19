@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   errorText: {
     marginTop: -5,
     marginBottom: 15,
-    color: "#d73a4a",
+    color: '#d73a4a',
   },
 });
 
@@ -20,10 +20,11 @@ const FormikTextInput = ({ name, ...props }) => {
   return (
     <>
       <TextInput
-        onChangeText={value => helpers.setValue(value)}
+        onChangeText={(value) => helpers.setValue(value)}
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
         error={showError}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       />
       {showError && <Text style={styles.errorText}>{meta.error}</Text>}

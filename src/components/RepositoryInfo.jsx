@@ -1,5 +1,7 @@
 import React from 'react';
-import { Linking, View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import {
+  Linking, View, Text, StyleSheet, Image, TouchableOpacity,
+} from 'react-native';
 import theme from '../Theme';
 import CountItem from './CountItem';
 
@@ -13,12 +15,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     margin: 20,
-    borderRadius:5,
+    borderRadius: 5,
   },
   language: {
     backgroundColor: theme.colors.primary,
     padding: 10,
-    borderRadius:5,
+    borderRadius: 5,
   },
   languageText: {
     color: 'white',
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
 });
 const RepositoryInfo = ({ repository }) => {
   const item = repository;
-  
+
   const onSubmit = () => {
     Linking.openURL(`https://github.com/${item.fullName}`);
   };
@@ -77,7 +79,7 @@ const RepositoryInfo = ({ repository }) => {
   return (
     <View style={styles.container}>
       <View style={styles.flexContainerA}>
-        <View >
+        <View>
           <Image
             style={styles.tinyLogo}
             source={{
@@ -87,7 +89,7 @@ const RepositoryInfo = ({ repository }) => {
         </View>
         <View style={styles.flexContainerB}>
           <View>
-            <Text testID='fullName' style={styles.fullname}>{item.fullName}</Text>
+            <Text testID="fullName" style={styles.fullname}>{item.fullName}</Text>
           </View>
           <View>
             <Text style={styles.description}>{item.description}</Text>
@@ -98,10 +100,10 @@ const RepositoryInfo = ({ repository }) => {
         </View>
       </View>
       <View style={styles.flexContainerC}>
-        <CountItem name='stars' count={item.stargazersCount} />
-        <CountItem name='forks' count={item.forksCount} />
-        <CountItem name='rating' count={item.ratingAverage} />
-        <CountItem name='review' count={item.reviewCount} />
+        <CountItem name="stars" count={item.stargazersCount} />
+        <CountItem name="forks" count={item.forksCount} />
+        <CountItem name="rating" count={item.ratingAverage} />
+        <CountItem name="review" count={item.reviewCount} />
       </View>
       <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
         <View style={styles.button}>
@@ -113,6 +115,5 @@ const RepositoryInfo = ({ repository }) => {
     </View>
   );
 };
-  
 
 export default RepositoryInfo;

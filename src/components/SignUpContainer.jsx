@@ -18,19 +18,16 @@ const validationSchema = yup.object().shape({
     .required('Password Confirmation is required'),
 });
 
-const SignUpContainer = ({ initialValues, onSubmit }) => {
-
-  return (
-    <View>
-      <Formik 
+const SignUpContainer = ({ initialValues, onSubmit }) => (
+  <View>
+    <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
-      >
-        {({ handleSubmit }) => <SignUpForm onSubmit={handleSubmit} />}
-      </Formik>
-    </View>
-  );
-};
+    >
+      {({ handleSubmit }) => <SignUpForm onSubmit={handleSubmit} />}
+    </Formik>
+  </View>
+);
 
 export default SignUpContainer;

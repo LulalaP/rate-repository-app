@@ -1,4 +1,4 @@
-import { gql } from "@apollo/react-hooks";
+import { gql } from '@apollo/react-hooks';
 
 export const AUTHORIZE = gql`
   mutation authorize($username: String!, $password: String!) {
@@ -14,7 +14,7 @@ export const CREATE_REVIEW = gql`
       repositoryId
     }
   }
-`
+`;
 
 export const CREATE_USER = gql`
   mutation createUser($username: String!, $password: String!) {
@@ -28,4 +28,4 @@ export const DELETE_REVIEW = gql`
   mutation deleteReview( $id: ID! ) {
     deleteReview( id: $id )
   }
-`
+`;

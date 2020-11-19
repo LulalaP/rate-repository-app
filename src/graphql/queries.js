@@ -110,4 +110,3 @@ export const GET_AUTHORIZED_USER = gql`
   }
   ${REVIEW_DETAILS}
 `;
-

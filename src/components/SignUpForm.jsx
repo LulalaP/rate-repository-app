@@ -23,21 +23,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const SignUpForm = ({ onSubmit }) => {
-  return (
-    <View style={styles.container}>
-      <FormikTextInput testID='usernameField' name='username' placeholder='Username' />
-      <FormikTextInput testID='passwordField' name="password" placeholder="Password" secureTextEntry={true} />
-      <FormikTextInput testID='passwordConfirmField' name="passwordConfirm" placeholder="password confirmation" secureTextEntry={true} />
-      <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
-        <View style={styles.signupBtn}>
-          <Text testID='submitButton' style={styles.signupBtnText} fontWeight='bold'>
-            Sign up
-          </Text>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
-};
+const SignUpForm = ({ onSubmit }) => (
+  <View style={styles.container}>
+    <FormikTextInput testID="usernameField" name="username" placeholder="Username" />
+    <FormikTextInput testID="passwordField" name="password" placeholder="Password" secureTextEntry />
+    <FormikTextInput testID="passwordConfirmField" name="passwordConfirm" placeholder="password confirmation" secureTextEntry />
+    <TouchableOpacity onPress={onSubmit} activeOpacity={0.8}>
+      <View style={styles.signupBtn}>
+        <Text testID="submitButton" style={styles.signupBtnText} fontWeight="bold">
+          Sign up
+        </Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+);
 
 export default SignUpForm;

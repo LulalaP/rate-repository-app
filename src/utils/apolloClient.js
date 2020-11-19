@@ -1,6 +1,8 @@
 import ApolloClient from 'apollo-boost';
-import { APOLLO_URI } from "@env";
+// eslint-disable-next-line import/no-unresolved
+import { APOLLO_URI } from '@env';
 
+// eslint-disable-next-line arrow-body-style
 const createApolloClient = (authStorage) => {
   return new ApolloClient({
     request: async (operation) => {
@@ -12,6 +14,7 @@ const createApolloClient = (authStorage) => {
           },
         });
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     },

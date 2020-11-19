@@ -11,7 +11,7 @@ import useAuthorizedUser from '../hooks/useAuthorizedUser';
 const styles = StyleSheet.create({
   flexContainer: {
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: "#24292e",
+    backgroundColor: '#24292e',
     padding: 20,
     display: 'flex',
     flexDirection: 'row',
@@ -22,9 +22,8 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   scrollView: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginHorizontal: 5,
-    
   },
 });
 
@@ -44,32 +43,32 @@ const AppBar = () => {
     history.push(path);
   }, []);
 
-  return(
+  return (
     <View style={styles.flexContainer}>
       <ScrollView style={styles.scrollView} horizontal>
         <View style={styles.flexItemA}>
-          <Link to="/" text="Repositories" path="/" cb={routeTabPress} component={AppBarTab}></Link>
+          <Link to="/" text="Repositories" path="/" cb={routeTabPress} component={AppBarTab} />
         </View>
         <View style={styles.flexItemA}>
           {authorizedUser && (
-          <Link to="/createreview" text="Create a review" path="/createreview" cb={routeTabPress} component={AppBarTab}></Link>
+          <Link to="/createreview" text="Create a review" path="/createreview" cb={routeTabPress} component={AppBarTab} />
           )}
         </View>
         <View style={styles.flexItemA}>
           {authorizedUser && (
-          <Link to="/myreviews" text="My reviews" path="/myreviews" cb={routeTabPress} component={AppBarTab}></Link>
-          )}
-        </View>
-        <View style={styles.flexItemA}>
-          {authorizedUser === null && (
-          <Link to="/signin" text='Sign in' path="/signin" cb={routeTabPress} component={AppBarTab}></Link>)}
-          {authorizedUser && (
-            <AppBarTab text="Sign out" path="/" cb={signOut}></AppBarTab>
+          <Link to="/myreviews" text="My reviews" path="/myreviews" cb={routeTabPress} component={AppBarTab} />
           )}
         </View>
         <View style={styles.flexItemA}>
           {authorizedUser === null && (
-          <Link to="/signup" text='Sign up' path="/signup" cb={routeTabPress} component={AppBarTab}></Link>)}
+          <Link to="/signin" text="Sign in" path="/signin" cb={routeTabPress} component={AppBarTab} />)}
+          {authorizedUser && (
+            <AppBarTab text="Sign out" path="/" cb={signOut} />
+          )}
+        </View>
+        <View style={styles.flexItemA}>
+          {authorizedUser === null && (
+          <Link to="/signup" text="Sign up" path="/signup" cb={routeTabPress} component={AppBarTab} />)}
         </View>
       </ScrollView>
     </View>

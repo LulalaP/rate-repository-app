@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export class RepositoryListContainer extends React.Component {
+class RepositoryListContainer extends React.Component {
   renderItem = ({ item }) => (
     <RepositoryItem item={item} />
   );
@@ -25,23 +25,23 @@ export class RepositoryListContainer extends React.Component {
         <SearchBar searchValue={searchValue} handleSearch={handleSearch} />
         <PickerSelect setOrderBy={setOrderBy} />
       </>
-    )
+    );
   }
 
-  render () {
+  render() {
     const { repositories, onEndReach } = this.props;
     if (repositories === undefined) return null;
 
     const repositoryNodes = repositories.edges
-      ? repositories.edges.map(edge => edge.node)
+      ? repositories.edges.map((edge) => edge.node)
       : [];
 
     return (
       <FlatList
-        testID='RepositoryListContainer'
+        testID="RepositoryListContainer"
         data={repositoryNodes}
         ItemSeparatorComponent={ItemSeparator}
-        renderItem = {this.renderItem}
+        renderItem={this.renderItem}
         keyExtractor={(item) => item.id}
         ListHeaderComponent={this.renderHeader}
         onEndReached={onEndReach}
@@ -49,6 +49,6 @@ export class RepositoryListContainer extends React.Component {
       />
     );
   }
-};
+}
 
 export default RepositoryListContainer;

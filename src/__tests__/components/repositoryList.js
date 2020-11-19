@@ -47,33 +47,29 @@ describe('RepositoryList', () => {
           },
         ],
       };
-      const { debug, getByTestId, getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
 
-      // debug();
-      for(let i = 0; i < 2; i++){
+      const { getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
+
+      for (let i = 0; i < 2; i += 1) {
         const fullName = getAllByTestId('fullName');
-        expect(fullName[i]).toHaveTextContent(i===0 ? 'jaredpalmer/formik' : 'async-library/react-async');
+        expect(fullName[i]).toHaveTextContent(i === 0 ? 'jaredpalmer/formik' : 'async-library/react-async');
 
         const stars = getAllByTestId('stars');
         expect(stars[i]).toHaveTextContent('stars');
-        expect(stars[i]).toHaveTextContent(i===0 ? '21.9k' : '1.8k');
+        expect(stars[i]).toHaveTextContent(i === 0 ? '21.9k' : '1.8k');
 
         const forks = getAllByTestId('forks');
         expect(forks[i]).toHaveTextContent('forks');
-        expect(forks[i]).toHaveTextContent(i===0 ? '1.6k' : '69');
+        expect(forks[i]).toHaveTextContent(i === 0 ? '1.6k' : '69');
 
         const rating = getAllByTestId('rating');
         expect(rating[i]).toHaveTextContent('rating');
-        expect(rating[i]).toHaveTextContent(i===0 ? '88' : '72');
-
+        expect(rating[i]).toHaveTextContent(i === 0 ? '88' : '72');
 
         const review = getAllByTestId('review');
         expect(review[i]).toHaveTextContent('review');
-        expect(review[i]).toHaveTextContent(i=== 0 ? '3' : '3');
+        expect(review[i]).toHaveTextContent(i === 0 ? '3' : '3');
       }
-
-      
     });
   });
 });
-

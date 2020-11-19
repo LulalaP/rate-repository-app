@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { useHistory } from "react-router-native";
+import {
+  View, Text, StyleSheet, Image, TouchableOpacity,
+} from 'react-native';
+import { useHistory } from 'react-router-native';
 import theme from '../Theme';
 import CountItem from './CountItem';
 
@@ -14,12 +16,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     margin: 20,
-    borderRadius:5,
+    borderRadius: 5,
   },
   language: {
     backgroundColor: theme.colors.primary,
     padding: 10,
-    borderRadius:5,
+    borderRadius: 5,
   },
   languageText: {
     color: 'white',
@@ -64,12 +66,12 @@ const RepositoryItem = ({ item }) => {
   const onPress = () => {
     history.push(`/repositories/${item.id}`);
   };
-  
+
   return (
     <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
       <View style={styles.container}>
         <View style={styles.flexContainerA}>
-          <View >
+          <View>
             <Image
               style={styles.tinyLogo}
               source={{
@@ -79,7 +81,7 @@ const RepositoryItem = ({ item }) => {
           </View>
           <View style={styles.flexContainerB}>
             <View>
-              <Text testID='fullName' style={styles.fullname}>{item.fullName}</Text>
+              <Text testID="fullName" style={styles.fullname}>{item.fullName}</Text>
             </View>
             <View>
               <Text style={styles.description}>{item.description}</Text>
@@ -90,15 +92,14 @@ const RepositoryItem = ({ item }) => {
           </View>
         </View>
         <View style={styles.flexContainerC}>
-          <CountItem name='stars' count={item.stargazersCount} />
-          <CountItem name='forks' count={item.forksCount} />
-          <CountItem name='rating' count={item.ratingAverage} />
-          <CountItem name='review' count={item.reviewCount} />
+          <CountItem name="stars" count={item.stargazersCount} />
+          <CountItem name="forks" count={item.forksCount} />
+          <CountItem name="rating" count={item.ratingAverage} />
+          <CountItem name="review" count={item.reviewCount} />
         </View>
       </View>
     </TouchableOpacity>
   );
 };
-  
 
 export default RepositoryItem;

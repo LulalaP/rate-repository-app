@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from '@apollo/react-hooks';
 
-import { GET_REPOSITORIES } from "../graphql/queries";
+import { GET_REPOSITORIES } from '../graphql/queries';
 
 const useRepositories = (variables) => {
-  const { data, fetchMore, loading, ...result } = useQuery(GET_REPOSITORIES, {
+  const {
+    data, fetchMore, loading, ...result
+  } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: 'cache-and-network',
     variables,
   });
 
   const handleFetchMore = () => {
-    const canFetchMore =
-      !loading && data && data.repositories.pageInfo.hasNextPage;
+    const canFetchMore = !loading && data && data.repositories.pageInfo.hasNextPage;
 
     if (!canFetchMore) {
       return;

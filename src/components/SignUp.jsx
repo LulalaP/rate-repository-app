@@ -18,8 +18,9 @@ const SignUp = () => {
 
     try {
       await signUp({ username, password });
-      if(result) await signIn({ username, password });
+      if (result) await signIn({ username, password });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };

@@ -5,12 +5,13 @@ class AuthStorage {
     this.namespace = namespace;
   }
 
-  getAccessToken = async() => {
+  getAccessToken = async () => {
     // Get the access token for the storage
     const token = await AsyncStorage.getItem(
       `${this.namespace}:token`,
     );
 
+    // eslint-disable-next-line no-unneeded-ternary
     return token ? token : [];
   }
 

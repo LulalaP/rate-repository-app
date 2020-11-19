@@ -1,7 +1,9 @@
 import React from 'react';
-import { useHistory } from "react-router-native";
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-import { format } from 'date-fns'
+import { useHistory } from 'react-router-native';
+import {
+  View, Text, StyleSheet, TouchableOpacity, Alert,
+} from 'react-native';
+import { format } from 'date-fns';
 import theme from '../Theme';
 
 import useDeleteReview from '../hooks/useDeleteReview';
@@ -82,7 +84,7 @@ const MyReviewItem = ({ item, refetch }) => {
   const history = useHistory();
   const [deleteReview] = useDeleteReview();
 
-  if(!item) return null;
+  if (!item) return null;
   const date = format(new Date(item.createdAt), 'dd.MM.yyyy');
 
   const handleViewRepository = () => {
@@ -97,21 +99,24 @@ const MyReviewItem = ({ item, refetch }) => {
       [
         {
           text: 'Cancel',
+          // eslint-disable-next-line no-console
           onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel'
+          style: 'cancel',
         },
-        { text: 'OK', onPress: async() => {
-          const id = item.id;
-          await deleteReview({id});
-          refetch();
-        } 
-        }
+        {
+          text: 'OK',
+          onPress: async () => {
+            const { id } = item;
+            await deleteReview({ id });
+            refetch();
+          },
+        },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
     return true;
   };
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.flexContainerA}>
@@ -149,6 +154,5 @@ const MyReviewItem = ({ item, refetch }) => {
     </View>
   );
 };
-  
 
 export default MyReviewItem;

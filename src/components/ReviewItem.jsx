@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { format } from 'date-fns'
+import { format } from 'date-fns';
 import theme from '../Theme';
 
 const styles = StyleSheet.create({
@@ -53,10 +53,9 @@ const styles = StyleSheet.create({
 });
 
 const ReviewItem = ({ item }) => {
-
-  if(!item) return null;
+  if (!item) return null;
   const date = format(new Date(item.createdAt), 'dd.MM.yyyy');
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.flexContainerA}>
@@ -78,6 +77,5 @@ const ReviewItem = ({ item }) => {
     </View>
   );
 };
-  
 
 export default ReviewItem;

@@ -12,13 +12,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   errorInput: {
-    borderColor: "#d73a4a",
+    borderColor: '#d73a4a',
   },
 });
 
 const TextInput = ({ style, error, ...props }) => {
   const textInputStyle = [style, styles.inputStyle, error && styles.errorInput];
 
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <NativeTextInput style={textInputStyle} {...props} />;
 };
 

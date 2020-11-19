@@ -19,10 +19,10 @@ const MyReviews = () => {
   const { authorizedUser, fetchMore, refetch } = useAuthorizedUser(variables);
 
   if (authorizedUser === undefined) return null;
-  
-  const reviews = authorizedUser.reviews;
+
+  const { reviews } = authorizedUser;
   const reviewNodes = reviews
-    ? reviews.edges.map(edge => edge.node)
+    ? reviews.edges.map((edge) => edge.node)
     : [];
 
   const onEndReach = () => {
@@ -39,6 +39,5 @@ const MyReviews = () => {
     />
   );
 };
-  
 
 export default MyReviews;

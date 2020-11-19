@@ -17,33 +17,31 @@ const styles = StyleSheet.create({
   },
 });
 
-const Main = () => {
-  return (
-    <View style={styles.container}>
-      <AppBar/>
-      <Switch>
-        <Route path="/repositories/:id" exact>
-          <SingleRepositoryItem />
-        </Route>
-        <Route path="/createreview" exact>
-          <CreateReview />
-        </Route>
-        <Route path="/" exact>
-          <RepositoryList />
-        </Route>
-        <Route path="/myreviews" exact>
-          <MyReviews />
-        </Route>
-        <Route path="/signin" exact>
-          <SignIn />
-        </Route>
-        <Route path="/signup" exact>
-          <SignUp />
-        </Route>
-        <Redirect to="/" />
-      </Switch>
-    </View>
-  );
-};
+const Main = () => (
+  <View style={styles.container}>
+    <AppBar />
+    <Switch>
+      <Route path="/repositories/:id" exact>
+        <SingleRepositoryItem />
+      </Route>
+      <Route path="/createreview" exact>
+        <CreateReview />
+      </Route>
+      <Route path="/" exact>
+        <RepositoryList />
+      </Route>
+      <Route path="/myreviews" exact>
+        <MyReviews />
+      </Route>
+      <Route path="/signin" exact>
+        <SignIn />
+      </Route>
+      <Route path="/signup" exact>
+        <SignUp />
+      </Route>
+      <Redirect to="/" />
+    </Switch>
+  </View>
+);
 
 export default Main;

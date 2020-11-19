@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Searchbar } from 'react-native-paper';
 
 const SearchBar = ({ searchValue, handleSearch }) => {
@@ -8,7 +8,7 @@ const SearchBar = ({ searchValue, handleSearch }) => {
 
   return (
     <Searchbar
-      placeholder='Search'
+      placeholder="Search"
       onChangeText={onChangeSearch}
       value={searchValue}
     />

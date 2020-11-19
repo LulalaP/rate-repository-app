@@ -24,7 +24,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
+const Text = ({
+  color, fontSize, fontWeight, style, ...props
+}) => {
   const textStyle = [
     styles.text,
     color === 'textSecondary' && styles.colorTextSecondary,
@@ -34,6 +36,7 @@ const Text = ({ color, fontSize, fontWeight, style, ...props }) => {
     style,
   ];
 
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <NativeText style={textStyle} {...props} />;
 };
 

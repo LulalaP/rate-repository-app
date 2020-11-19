@@ -16,6 +16,7 @@ const SignIn = () => {
     try {
       await signIn({ username, password });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };

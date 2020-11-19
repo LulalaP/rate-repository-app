@@ -1,5 +1,7 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Text, View, StyleSheet, TouchableOpacity,
+} from 'react-native';
 import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
@@ -13,14 +15,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppBarTab = ({text, path, cb}) => {
-  return(
-    <View style={styles.container}>
-      <TouchableOpacity activeOpacity={0.8} onPress={() => cb(path)}>
-        <Text style={styles.text}>{text}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+const AppBarTab = ({ text, path, cb }) => (
+  <View style={styles.container}>
+    <TouchableOpacity activeOpacity={0.8} onPress={() => cb(path)}>
+      <Text style={styles.text}>{text}</Text>
+    </TouchableOpacity>
+  </View>
+);
 
 export default AppBarTab;
